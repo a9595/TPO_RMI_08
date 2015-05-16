@@ -14,15 +14,13 @@ public class RMI_Client {
         Scanner scanner = new Scanner(System.in);
 
         echo_message_test(remote, scanner);
-        adding_digits_test(remote, scanner); //adding digits
+        adding_digits_test(remote); //adding digits
 
     }
 
-    private static void adding_digits_test(RMI_Remote remote, Scanner scanner) throws RemoteException {
-        System.out.println("Enter digit a: ");
-        int a = scanner.nextInt();
-        System.out.println("Enter digit b: ");
-        int b = scanner.nextInt();
+    private static void adding_digits_test(RMI_Remote remote) throws RemoteException {
+        int a = getNumberFromUser();
+        int b = getNumberFromUser();
 
         //  non primitive type
         My_Digit my_digit_a = new My_Digit(a);
@@ -39,4 +37,19 @@ public class RMI_Client {
         My_Message my_message = new My_Message(client_message);
         System.out.println("server echo response = " + remote.echoRMIMessage(my_message));
     }
+
+    public static int getNumberFromUser() {
+        Scanner sc = new Scanner(System.in);
+        int number;
+        do {
+            System.out.println("Please enter a positive number!");
+            while (!sc.hasNextInt()) {
+                System.out.println("That's not a number!");
+                sc.next(); // this is important!
+            }
+            number = sc.nextInt();
+        } while (number <= 0);
+        return number;
+    }
+
 }
