@@ -25,7 +25,7 @@ public class RMI_Client {
         //  non primitive type
         My_Digit my_digit_a = new My_Digit(a);
         My_Digit my_digit_b = new My_Digit(b);
-        System.out.println(a + " + " + b + " = " + remote.addMyDigits(my_digit_a, my_digit_b));
+        System.out.println("\t " + a + " + " + b + " = " + remote.addMyDigits(my_digit_a, my_digit_b));
     }
 
     private static void echo_message_test(RMI_Remote remote, Scanner scanner) throws RemoteException {
@@ -35,9 +35,10 @@ public class RMI_Client {
 
         //non primitive type
         My_Message my_message = new My_Message(client_message);
-        System.out.println("server echo response = " + remote.echoRMIMessage(my_message));
+        System.out.println("\t server echo response = " + remote.echoRMIMessage(my_message));
     }
 
+    //just for validation
     public static int getNumberFromUser() {
         Scanner sc = new Scanner(System.in);
         int number;
